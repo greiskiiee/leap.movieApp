@@ -9,7 +9,7 @@ interface MovieCardProps {
 
 export const MovieCard: React.FC<MovieCardProps> = ({ title, imdb, img }) => {
   return (
-    <button className="w-[230px] h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md">
+    <button className="w-[230px] h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70">
       <img src={img} className="w-[230px] h-[340px] rounded-t-md" />
 
       <div className="w-full flex flex-col justify-start items-start p-2">

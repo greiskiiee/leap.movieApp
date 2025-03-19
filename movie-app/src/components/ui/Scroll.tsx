@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -7,8 +8,17 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ScrollItem } from "./ScrollItem";
+import axios from "axios";
 
 export const Scroll = () => {
+  const [movieData, setData] = useState<{ results: any[] }>({ results: [] });
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=d67d8bebd0f4ff345f6505c99e9d0289"
+      )
+      .then((res) => setData(res.data));
+  }, []);
   return (
     <div className="w-full h-[900px] flex items-center justify-center">
       <Carousel className="w-[1880px] flex justify-center  ">
