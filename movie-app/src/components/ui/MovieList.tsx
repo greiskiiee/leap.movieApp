@@ -5,7 +5,10 @@ import { MovieCard } from "./MovieCard";
 
 import axios from "axios";
 
-export const Upcoming = () => {
+interface MovieListProps {
+  title: string;
+}
+export const MovieList: React.FC<MovieListProps> = ({ title }) => {
   //   const [data, setData] = useState("");
   //   useEffect(() => {
   //     axios
@@ -18,7 +21,7 @@ export const Upcoming = () => {
   return (
     <div className="w-full h-[978px] px-[80px] flex flex-col gap-[32px]">
       <div className="w-full h-[36px] flex justify-between items-center">
-        <p className="inter text-[24px] font-[600] text-[#09090B]">Upcoming</p>
+        <p className="inter text-[24px] font-[600] text-[#09090B]">{title}</p>
         <SeeMoreButton />
       </div>
 
