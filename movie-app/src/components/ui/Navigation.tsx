@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import {
   NavigationMenu,
@@ -8,12 +9,29 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Film, Moon } from "lucide-react";
+import { ChevronRight, Film, Moon } from "lucide-react";
+import axios from "axios";
 
 export const Navigation = () => {
+  const [genreData, setGenre] = useState<{ genres: any[] }>({ genres: [] });
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=d67d8bebd0f4ff345f6505c99e9d0289`
+      )
+      .then((res) => setGenre(res.data));
+  }, []);
+
+  console.log(genreData);
+
+  genreData.genres.map((value) => {
+    console.log(value);
+  });
+
   return (
-    <div className="w-screen h-[59px] flex items-center justify-center mb-[1px]">
-      <div className="w-[1280px] h-[36px] flex justify-between items-center ">
+    <div className="w-[80%] h-[59px] flex items-center justify-center mb-[1px] mt-4">
+      <div className="w-full h-[36px] flex justify-between items-center ">
         <div className="w-[92px] h-[36px] flex gap-[8px] justify-center items-center">
           <Film size={20} color="#4338CA" strokeWidth={1} />
           <p className="inter italic font-[700] text-[#4338CA] text-[16px]">
@@ -29,25 +47,40 @@ export const Navigation = () => {
                 <NavigationMenuTrigger className="text-[14px] border-1 border-[#E4E4E7]">
                   Genre
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            shadcn/ui
-                          </div>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <a href="/docs" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
-                    </a>
-                  </ul>
+                <NavigationMenuContent className="p-5 ">
+                  <div className="flex flex-col">
+                    <p className="text-[#09090B] text-[24px] font-[600] inter">
+                      Genre
+                    </p>
+                    <p className="text-[#09090B] text-[16px] font-[400] inter">
+                      See lists of movies by genre
+                    </p>
+                  </div>
+                  <div className="w-full h-[33px] flex justify-center items-center">
+                    <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
+                  </div>
+                  <div className="w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
+                    {genreData.genres.map((value) => {
+                      return (
+                        <NavigationMenuLink asChild>
+                          <a
+                            className="flex h-[20px] w-fit justify-center items-center py-[2px] pr-1 pl-[10px] gap-2 rounded-full border-1 border-[#E4E4E7] focus:shadow-md"
+                            href="/"
+                          >
+                            <div className=" flex justify-center items-center text-[12px] inter font-[600] rounded-full text-[#09090B]">
+                              {value.name}
+
+                              <ChevronRight
+                                size={16}
+                                strokeWidth={1}
+                                color="#09090B"
+                              />
+                            </div>
+                          </a>
+                        </NavigationMenuLink>
+                      );
+                    })}
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
