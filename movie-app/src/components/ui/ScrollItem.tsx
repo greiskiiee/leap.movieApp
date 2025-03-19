@@ -6,6 +6,7 @@ interface ScrollItemProps {
   imdb: number;
   desc: string;
   img: string;
+  trailer: string;
 }
 
 export const ScrollItem: React.FC<ScrollItemProps> = ({
@@ -13,6 +14,7 @@ export const ScrollItem: React.FC<ScrollItemProps> = ({
   imdb,
   desc,
   img,
+  trailer,
 }) => {
   return (
     <div className="w-full h-full absolute ">
@@ -38,7 +40,7 @@ export const ScrollItem: React.FC<ScrollItemProps> = ({
         <p className="w-[300px] text-[#FAFAFA] inter text-[12px] font-[400] text-start ">
           {desc}
         </p>
-        <TrailerButton />
+        <TrailerButton trailer={trailer} />
       </div>
     </div>
   );
