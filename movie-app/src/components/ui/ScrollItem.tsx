@@ -19,7 +19,7 @@ export const ScrollItem: React.FC<ScrollItemProps> = ({
   return (
     <div className="w-full h-full absolute ">
       <img src={img} className="w-full h-full relative z-20 " />
-      <div className="max-w-[404px] max-h-[206px] relative z-90 left-[200px] top-[-500px] bg-transparent flex flex-col gap-[16px]">
+      <div className="max-w-[404px] max-h-[206px] relative z-90 left-[20%] top-[-50%] bg-transparent flex flex-col gap-[16px]">
         <div className="flex flex-col">
           <p className="text-[16px] font-[400] inter text-white">
             Now Playing:
