@@ -9,8 +9,8 @@ interface MovieCardProps {
 
 export const MovieCard: React.FC<MovieCardProps> = ({ title, imdb, img }) => {
   return (
-    <button className="w-[230px] h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70">
-      <img src={img} className="w-[230px] h-[340px] rounded-t-md" />
+    <button className="max-w-[260px] max-h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70">
+      <img src={img} className="w-full max-h-[340px] rounded-t-md" />
 
       <div className="w-full flex flex-col justify-start items-start p-2">
         <div className="flex w-fit h-fit justify-start items-center gap-[4px]">
@@ -23,7 +23,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ title, imdb, img }) => {
           </p>
         </div>
 
-        <p className="inter text-[#09090B] text-[18px] font-[400] text-start ">
+        <p className="inter text-[#09090B] text-[18px] font-[400] text-start md:text-[10px]">
           {" "}
           {title}
         </p>

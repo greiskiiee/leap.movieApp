@@ -4,7 +4,7 @@ import React from "react";
 export const Footer = () => {
   return (
     <div className="w-screen h-[280px] flex bg-[#4338CA] p-[40px] gap-[120px] justify-center items-center">
-      <div className="w-[80%] flex">
+      <div className="w-[80%] flex justify-between">
         <div className="w-[247px] h-[200px] flex flex-col justify-start items-start gap-[12px]">
           <div className="w-[92px] h-[36px] flex gap-[8px] justify-center items-center">
             <Film size={20} color="#FAFAFA" strokeWidth={1} />
