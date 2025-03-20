@@ -10,7 +10,10 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { ChevronRight, Film, Moon } from "lucide-react";
-import axios from "axios";
+import { Popover, PopoverContent } from "./popover";
+import { PopoverTrigger } from "@radix-ui/react-popover";
+import { Button } from "@/components/ui/button";
+import { SearchItem } from "./SearchItem";
 
 interface NavProps {
   genreData: any;
@@ -76,13 +79,39 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <div className="w-[379px] h-[36px] border-1 border-[#E4E4E7] rounded-md flex items-center justify-start px-[12px] gap-[10px]">
-            <CiSearch size={16} className="opacity-50" />
-            <input
-              type="text"
-              placeholder="Search.."
-              className="text-[14px] outline-0 w-full"
-            />
+
+          <div className="w-[539px] h-[36px] ">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-full h-full border-1 border-[#E4E4E7] rounded-md flex items-center justify-start px-[12px] gap-[10px]"
+                >
+                  <CiSearch size={16} className="opacity-50" />
+                  <input
+                    type="text"
+                    placeholder="Search.."
+                    className="text-[14px] outline-0 w-full"
+                  />
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent className="w-[577px] ">
+                <div className="flex flex-col ">
+                  <SearchItem />
+                  <div className="w-full h-[17px] flex justify-center items-center">
+                    <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
+                  </div>
+                  <SearchItem />
+
+                  <div className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]">
+                    <p className="inter font-[500] text-[14px] text-[#09090B]">
+                      See all results for "Wicked"
+                    </p>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
 
