@@ -8,23 +8,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [upcomingData, setUpcomingData] = useState<{ results: any[] }>({
-    results: [],
-  });
-
-  const [popularData, setPopularData] = useState<{ results: any[] }>({
-    results: [],
-  });
-
-  const [topData, setTopData] = useState<{ results: any[] }>({
-    results: [],
-  });
-
-  const [nowPlayingData, setNowPlayingData] = useState<{ results: any[] }>({
-    results: [],
-  });
-
-  const [genreData, setGenre] = useState<{ genres: any[] }>({ genres: [] });
+  const [upcomingData, setUpcomingData] = useState([]);
+  const [popularData, setPopularData] = useState([]);
+  const [topData, setTopData] = useState([]);
+  const [nowPlayingData, setNowPlayingData] = useState([]);
+  const [genreData, setGenre] = useState([]);
 
   const promise1 = axios.get(
     "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=d67d8bebd0f4ff345f6505c99e9d0289"
@@ -45,22 +33,22 @@ export default function Home() {
   useEffect(() => {
     Promise.all([promise1, promise2, promise3, promise4, promise5]).then(
       ([res1, res2, res3, res4, res5]) => {
-        setUpcomingData(res1.data);
-        setPopularData(res2.data);
-        setTopData(res3.data);
-        setNowPlayingData(res4.data);
-        setGenre(res5.data);
+        setUpcomingData(res1.data.results);
+        setPopularData(res2.data.results);
+        setTopData(res3.data.results);
+        setNowPlayingData(res4.data.results);
+        setGenre(res5.data.genres);
       }
     );
   }, []);
 
   return (
     <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
-      <Navigation genreData={genreData.genres} />
-      <Scroll data={nowPlayingData.results} />
-      <MovieList title="Upcoming" data={upcomingData.results} />
-      <MovieList title="Popular" data={popularData.results} />
-      <MovieList title="Top Rated" data={topData.results} />
+      <Navigation genreData={genreData} />
+      <Scroll data={nowPlayingData} />
+      <MovieList title="Upcoming" data={upcomingData} />
+      <MovieList title="Popular" data={popularData} />
+      <MovieList title="Top Rated" data={topData} />
 
       <Footer />
     </div>

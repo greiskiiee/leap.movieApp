@@ -23,7 +23,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ title, imdb, img }) => {
           </p>
         </div>
 
-        <p className="inter text-[#09090B] text-[18px] font-[400] text-start md:text-[10px]">
+        <p className="inter text-[#09090B] text-[16px] font-[400] text-start ">
           {" "}
           {title}
         </p>
