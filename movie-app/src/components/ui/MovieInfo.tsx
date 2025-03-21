@@ -84,7 +84,7 @@ export const MovieInfo = () => {
           />
         </div>
 
-        <MovieList title="More Like This" />
+        {/* <MovieList title="More Like This" /> */}
       </div>
     </div>
   );

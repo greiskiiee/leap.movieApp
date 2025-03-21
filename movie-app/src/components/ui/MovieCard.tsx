@@ -5,11 +5,20 @@ interface MovieCardProps {
   title: string;
   imdb: number;
   img: string;
+  onClick: () => void;
 }
 
-export const MovieCard: React.FC<MovieCardProps> = ({ title, imdb, img }) => {
+export const MovieCard: React.FC<MovieCardProps> = ({
+  title,
+  imdb,
+  img,
+  onClick,
+}) => {
   return (
-    <button className="max-w-[260px] h-[440px] min-h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70">
+    <div
+      className="max-w-[260px] h-[440px] min-h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70"
+      onClick={onClick}
+    >
       <img src={img} className="w-[260px] h-[80%] rounded-t-md" />
 
       <div className="w-full flex flex-col justify-start items-start p-2">
@@ -28,6 +37,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ title, imdb, img }) => {
           {title}
         </p>
       </div>
-    </button>
+    </div>
   );
 };

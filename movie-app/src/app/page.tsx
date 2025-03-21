@@ -51,7 +51,6 @@ export default function Home() {
       <MovieList title="Popular" data={popularData} />
       <MovieList title="Top Rated" data={topData} />
 
-      <MovieInfo />
       <Footer />
     </div>
   );
