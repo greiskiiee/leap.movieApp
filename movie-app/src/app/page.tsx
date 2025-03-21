@@ -6,6 +6,7 @@ import { MovieList } from "@/components/ui/MovieList";
 import { Footer } from "@/components/ui/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { MovieInfo } from "@/components/ui/MovieInfo";
 
 export default function Home() {
   const [upcomingData, setUpcomingData] = useState([]);
@@ -50,6 +51,7 @@ export default function Home() {
       <MovieList title="Popular" data={popularData} />
       <MovieList title="Top Rated" data={topData} />
 
+      <MovieInfo />
       <Footer />
     </div>
   );

@@ -4,7 +4,7 @@ import { MovieCard } from "./MovieCard";
 
 interface MovieListProps {
   title: string;
-  data: any;
+  data?: any;
 }
 export const MovieList: React.FC<MovieListProps> = ({ title, data }) => {
   return (

@@ -96,13 +96,16 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                 </Button>
               </PopoverTrigger>
 
-              <PopoverContent className="w-[577px] ">
+              <PopoverContent className="w-[577px] mt-2">
                 <div className="flex flex-col ">
                   <SearchItem />
                   <div className="w-full h-[17px] flex justify-center items-center">
                     <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
                   </div>
                   <SearchItem />
+                  <div className="w-full h-[17px] flex justify-center items-center">
+                    <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
+                  </div>
 
                   <div className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]">
                     <p className="inter font-[500] text-[14px] text-[#09090B]">

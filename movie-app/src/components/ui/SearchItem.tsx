@@ -4,7 +4,7 @@ import { SeeMoreButton } from "./SeeMoreButton";
 
 export const SearchItem = () => {
   return (
-    <div className="w-full h-[116px] rounded-lg p-2 flex gap-4 hover:border-1">
+    <div className="w-full h-[116px] rounded-lg p-2 flex gap-4 hover:bg-[#d5d5d5] hover:opacity-85">
       <div className="w-[77px] h-full rounded-md">
         <img
           className="rounded-md h-full w-full"
