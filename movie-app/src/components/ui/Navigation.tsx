@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import {
   NavigationMenu,
@@ -14,16 +14,32 @@ import { Popover, PopoverContent } from "./popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
 import { SearchItem } from "./SearchItem";
+import { useRouter } from "next/navigation";
 
 interface NavProps {
   genreData: any;
 }
 
 export const Navigation: React.FC<NavProps> = ({ genreData }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const setInput = () => {
+    // inputRef.current.focus();
+  };
+
+  const homePage = useRouter();
+
+  const onClick = () => {
+    homePage.push("/");
+  };
+
   return (
     <div className="w-[80%] h-[59px] flex items-center justify-center mb-[1px] mt-4">
       <div className="w-full h-[36px] flex justify-between items-center ">
-        <div className="w-[92px] h-[36px] flex gap-[8px] justify-center items-center">
+        <div
+          className="w-[92px] h-[36px] flex gap-[8px] justify-center items-center"
+          onClick={onClick}
+        >
           <Film size={20} color="#4338CA" strokeWidth={1} />
           <p className="inter italic font-[700] text-[#4338CA] text-[16px]">
             {" "}
@@ -89,6 +105,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                 >
                   <CiSearch size={16} className="opacity-50" />
                   <input
+                    ref={inputRef}
                     type="text"
                     placeholder="Search.."
                     className="text-[14px] outline-0 w-full"

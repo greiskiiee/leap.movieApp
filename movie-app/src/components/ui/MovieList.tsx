@@ -20,7 +20,7 @@ export const MovieList: React.FC<MovieListProps> = ({ title, data }) => {
         <SeeMoreButton />
       </div>
 
-      <div className="grid grid-cols-5 grid-rows-2 gap-8 place-items-center ">
+      <div className="w-full flex flex-wrap justify-center items-center gap-8 ">
         {data.slice(0, 10).map(
           (
             movie: {
