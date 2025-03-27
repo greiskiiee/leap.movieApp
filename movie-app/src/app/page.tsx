@@ -6,6 +6,12 @@ import { Footer } from "@/components/ui/Footer";
 import { Suspense, useEffect, useState } from "react";
 import axios from "axios";
 import { HomeSkeleton } from "@/components/ui/skeletons/HomeSkeleton";
+import { Task1 } from "@/components/ui/Task1";
+import { Task2 } from "@/components/ui/Task2";
+import { Task4 } from "@/components/ui/Task4";
+import { Task3 } from "@/components/ui/Task3";
+import { Task5 } from "@/components/ui/Task5";
+import { Task6 } from "@/components/ui/Task6";
 
 const API_KEY = "d67d8bebd0f4ff345f6505c99e9d0289";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -68,5 +74,19 @@ export default function Home() {
         <Footer />
       </div>
     </Suspense>
+    // <div className="w-[1000px] h-fit p-10 flex flex-wrap gap-4">
+    //   {/* 1.counter increment */}
+    //   <Task1 />
+    //   {/* 2.input field control */}
+    //   <Task2 />
+    //   {/* 3.toggle */}
+    //   <Task3 />
+    //   {/* 4.input length */}
+    //   <Task4 />
+    //   {/*5. to do list*/}
+    //   <Task5 />
+
+    //   <Task6 />
+    // </div>
   );
 }

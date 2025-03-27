@@ -14,13 +14,13 @@ export const MovieList: React.FC<MovieListProps> = ({ title, data }) => {
     router.push(`/detail/${id}`);
   };
   return (
-    <div className="w-[80%] h-[978px] px-[80px] flex flex-col gap-[32px] justify-center ">
+    <div className="w-[80%] h-fit px-[80px] flex flex-col gap-[32px] justify-center ">
       <div className="w-full h-[36px] flex justify-between items-center">
         <p className="inter text-[24px] font-[600] text-[#09090B]">{title}</p>
         <SeeMoreButton />
       </div>
 
-      <div className="w-full flex flex-wrap justify-center items-center gap-8 ">
+      <div className="w-full flex flex-wrap justify-center items-center gap-20 ">
         {data.slice(0, 10).map(
           (
             movie: {

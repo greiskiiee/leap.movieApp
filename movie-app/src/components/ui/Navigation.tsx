@@ -15,22 +15,52 @@ import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
 import { SearchItem } from "./SearchItem";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+
+const API_KEY = "d67d8bebd0f4ff345f6505c99e9d0289";
+const BASE_URL = "https://api.themoviedb.org/3";
 
 interface NavProps {
   genreData: any;
 }
 
+const fetchMovies = async (searchQuery: string) => {
+  try {
+    const url = `${BASE_URL}/search/movie?query=${searchQuery}&language=en-US&page=1&api_key=${API_KEY}`;
+    const response = await axios.get(url);
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    return [];
+  }
+};
+
 export const Navigation: React.FC<NavProps> = ({ genreData }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const setInput = () => {
-    // inputRef.current.focus();
-  };
-
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchData, setSearchData] = useState([]);
   const homePage = useRouter();
 
   const onClick = () => {
     homePage.push("/");
+  };
+
+  const handleSearch = () => {
+    setSearchQuery(inputRef.current!.value);
+  };
+
+  useEffect(() => {
+    if (searchQuery) {
+      fetchMovies(searchQuery).then((data) => {
+        setSearchData(data);
+      });
+    }
+  }, [searchQuery]);
+
+  const router = useRouter();
+
+  const handleClick = (id: number) => {
+    router.push(`/detail/${id}`);
   };
 
   return (
@@ -109,26 +139,47 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                     type="text"
                     placeholder="Search.."
                     className="text-[14px] outline-0 w-full"
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                   />
                 </Button>
               </PopoverTrigger>
 
-              <PopoverContent className="w-[577px] mt-2">
-                <div className="flex flex-col ">
-                  <SearchItem />
-                  <div className="w-full h-[17px] flex justify-center items-center">
-                    <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
-                  </div>
-                  <SearchItem />
-                  <div className="w-full h-[17px] flex justify-center items-center">
-                    <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
-                  </div>
-
-                  <div className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]">
-                    <p className="inter font-[500] text-[14px] text-[#09090B]">
-                      See all results for "Wicked"
-                    </p>
-                  </div>
+              <PopoverContent className="w-[577px] mt-2 overflow-scroll">
+                <div className="h-fit flex flex-col overflow-scroll max-h-[600px]">
+                  {searchData.slice(0, 10).map(
+                    (
+                      movie: {
+                        original_title: string;
+                        vote_average: number;
+                        poster_path: string;
+                        id: number;
+                        release_date: string;
+                      },
+                      idx
+                    ) => {
+                      return (
+                        <div key={idx}>
+                          <SearchItem
+                            name={movie.original_title}
+                            rate={movie.vote_average}
+                            img_path={movie.poster_path}
+                            date={movie.release_date.split("-")[0]}
+                            onClick={() => {
+                              handleClick(movie.id);
+                            }}
+                          />
+                          <div className="w-full h-[17px] flex justify-center items-center">
+                            <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+                <div className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]">
+                  <p className="inter font-[500] text-[14px] text-[#09090B]">
+                    See all results for {searchQuery}
+                  </p>
                 </div>
               </PopoverContent>
             </Popover>
