@@ -53,11 +53,11 @@ export default function Home() {
   useEffect(() => {
     fetchMovies().then((data) => {
       if (data) {
-        setUpcomingData(data.upcoming || []);
-        setPopularData(data.popular || []);
-        setTopData(data.topRated || []);
-        setNowPlayingData(data.nowPlaying || []);
-        setGenre(data.genres || []);
+        setUpcomingData(data.upcoming);
+        setPopularData(data.popular);
+        setTopData(data.topRated);
+        setNowPlayingData(data.nowPlaying);
+        setGenre(data.genres);
       }
     });
   }, []);

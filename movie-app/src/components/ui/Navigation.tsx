@@ -59,8 +59,12 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
 
   const router = useRouter();
 
-  const handleClick = (id: number) => {
+  const handleClickDetail = (id: number) => {
     router.push(`/detail/${id}`);
+  };
+
+  const handleClickSearch = (searchQuery: string) => {
+    router.push(`/search/${searchQuery}`);
   };
 
   return (
@@ -165,7 +169,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                             img_path={movie.poster_path}
                             date={movie.release_date.split("-")[0]}
                             onClick={() => {
-                              handleClick(movie.id);
+                              handleClickDetail(movie.id);
                             }}
                           />
                           <div className="w-full h-[17px] flex justify-center items-center">
@@ -176,7 +180,11 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                     }
                   )}
                 </div>
-                <div className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]">
+
+                <div
+                  className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]"
+                  onClick={() => handleClickSearch(searchQuery)}
+                >
                   <p className="inter font-[500] text-[14px] text-[#09090B]">
                     See all results for {searchQuery}
                   </p>

@@ -46,7 +46,6 @@ export default function Detail() {
     });
   }, [movieId]);
 
-  // const runtime = movie.runtime;
   const hours = Math.floor(movie.runtime / 60);
   const minutes = movie.runtime % 60;
 

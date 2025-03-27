@@ -6,15 +6,22 @@ import { useRouter } from "next/navigation";
 interface MovieListProps {
   title: string;
   data?: any;
+  className?: string;
 }
-export const MovieList: React.FC<MovieListProps> = ({ title, data }) => {
+export const MovieList: React.FC<MovieListProps> = ({
+  title,
+  data,
+  className,
+}) => {
   const router = useRouter();
 
   const handleClick = (id: number) => {
     router.push(`/detail/${id}`);
   };
   return (
-    <div className="w-[80%] h-fit px-[80px] flex flex-col gap-[32px] justify-center ">
+    <div
+      className={`w-[80%] h-fit px-[80px] flex flex-col gap-[32px] justify-center ${className}`}
+    >
       <div className="w-full h-[36px] flex justify-between items-center">
         <p className="inter text-[24px] font-[600] text-[#09090B]">{title}</p>
         <SeeMoreButton />
