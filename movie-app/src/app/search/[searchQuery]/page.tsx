@@ -1,33 +1,19 @@
 "use client";
-import { MovieGenre } from "@/components/ui/MovieGenre";
 import { MovieList } from "@/components/ui/MovieList";
 import { Navigation } from "@/components/ui/Navigation";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import { StaffInfo } from "@/components/ui/StaffInfo";
-import { NavigationMenuContent } from "@radix-ui/react-navigation-menu";
-import axios from "axios";
-import { log } from "console";
+import { axiosInstance } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useParams } from "next/navigation";
-import React, { Key, useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
-
-const API_KEY = "d67d8bebd0f4ff345f6505c99e9d0289";
-const BASE_URL = "https://api.themoviedb.org/3";
+import React, { useEffect, useState } from "react";
 
 const fetchMovies = async (searchQuery: string) => {
   try {
     const urls = [
-      `${BASE_URL}/search/movie?query=${searchQuery}&language=en-US&page=1&api_key=${API_KEY}`,
-      `${BASE_URL}/genre/movie/list?language=en&api_key=${API_KEY}`,
+      `search/movie?query=${searchQuery}&language=en-US&page=1&`,
+      `genre/movie/list?language=en&`,
     ];
     const [search, genres] = await Promise.all(
-      urls.map((url) => axios.get(url))
+      urls.map((url) => axiosInstance.get(url))
     );
     return {
       search: search.data.results,
@@ -67,7 +53,7 @@ export default function Detail() {
         </div>
 
         <div className="flex w-full h-fit justify-between items-start">
-          <MovieList title="" data={searchData} className="w-[807px]" />
+          <MovieList data={searchData} className="w-[807px]" />
 
           <div className=" h-fit">
             <div className="flex flex-col">
