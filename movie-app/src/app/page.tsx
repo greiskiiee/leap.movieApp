@@ -63,9 +63,9 @@ export default function Home() {
       <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
         <Navigation genreData={genreData} />
         <Scroll data={nowPlayingData} />
-        <MoviebyCategory title="Upcoming" data={upcomingData} />
-        <MoviebyCategory title="Popular" data={popularData} />
-        <MoviebyCategory title="Top Rated" data={topData} />
+        <MoviebyCategory title="Upcoming" data={upcomingData} slice={10} />
+        <MoviebyCategory title="Popular" data={popularData} slice={10} />
+        <MoviebyCategory title="Top Rated" data={topData} slice={10} />
         <Footer />
       </div>
     </Suspense>

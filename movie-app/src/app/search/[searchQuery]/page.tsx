@@ -1,4 +1,5 @@
 "use client";
+import { Footer } from "@/components/ui/Footer";
 import { MovieList } from "@/components/ui/MovieList";
 import { Navigation } from "@/components/ui/Navigation";
 import { axiosInstance } from "@/lib/utils";
@@ -45,15 +46,15 @@ export default function Detail() {
     <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
       <Navigation genreData={genreData} />
 
-      <div className="w-[1440px] h-fit flex flex-col justify-start items-center  gap-6">
-        <div className="w-full h-fit flex justify-start items-center gap-6">
+      <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">
+        <div className="w-full h-fit flex justify-start items-center gap-6 ">
           <p className="text-[30px] inter font-[600] text-[#09090B]">
             Search Results
           </p>
         </div>
 
-        <div className="flex w-full h-fit justify-between items-start">
-          <MovieList data={searchData} className="w-[807px]" />
+        <div className="flex w-full h-fit justify-between items-start ">
+          <MovieList data={searchData} className="p-0" sliceMax={16} />
 
           <div className=" h-fit">
             <div className="flex flex-col">
@@ -91,6 +92,7 @@ export default function Detail() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -16,7 +16,7 @@ interface ScrollData {
 export const Scroll: React.FC<ScrollData> = ({ data }) => {
   return (
     <div className="w-full h-[900px] flex items-center justify-center">
-      <Carousel className="w-[80%] flex justify-center bg-transparent  ">
+      <Carousel className="w-[80%] flex justify-center bg-transparent ">
         <CarouselPrevious className="z-50 left-[50px]" />
         <CarouselNext className="z-50 right-[50px]" />
         <CarouselContent className="z-10 w-full left-0 top-0 bg-transparent">
