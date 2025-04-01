@@ -1,5 +1,5 @@
 import React from "react";
-import { Skeleton } from "../SkeletonDemo";
+import { Skeleton } from "../skeleton";
 import { Navigation } from "../Navigation";
 
 export const HomeSkeleton = () => {
@@ -9,8 +9,17 @@ export const HomeSkeleton = () => {
       <Navigation genreData={genreData} />
       <Skeleton className="w-full h-[600px] rounded-full" />
 
-      <div className="">
-        <Skeleton className="w-full h-[600px] rounded-full" />
+      <div className="w-full h-[2000px] flex flex-wrap">
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
+        <Skeleton className="w-[230px] h-[440px]" />
       </div>
     </div>
   );

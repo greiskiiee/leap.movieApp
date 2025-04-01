@@ -92,7 +92,7 @@ export default function Detail() {
 
   console.log(director, writers, actors);
   return (
-    <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
+    <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center">
       <Navigation genreData={genreData} />
 
       <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">

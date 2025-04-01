@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <Suspense fallback={<HomeSkeleton />}>
       {" "}
-      <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
+      <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center">
         <Navigation genreData={genreData} />
         <Carousell data={nowPlayingData} />
         <MoviebyCategory title="Upcoming" data={upcomingData} slice={10} />

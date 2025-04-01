@@ -43,7 +43,7 @@ export default function Detail() {
   console.log(genreData);
 
   return (
-    <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
+    <div className="w-screen flex flex-col min-h-screen gap-8 items-center">
       <Navigation genreData={genreData} />
 
       <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">
@@ -53,7 +53,7 @@ export default function Detail() {
           </p>
         </div>
 
-        <div className="flex w-full h-fit justify-between items-start ">
+        <div className="flex w-full h-fit justify-between items-start gap-6 ">
           <MovieList data={searchData} className="p-0" />
 
           <div className=" h-fit">
