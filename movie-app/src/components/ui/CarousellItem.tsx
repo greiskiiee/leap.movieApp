@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { TrailerButton } from "./TrailerButton";
-interface ScrollItemProps {
+interface CarousellItemProps {
   name: string;
   imdb: number;
   desc: string;
@@ -9,7 +9,7 @@ interface ScrollItemProps {
   trailer: string;
 }
 
-export const ScrollItem: React.FC<ScrollItemProps> = ({
+export const CarousellItem: React.FC<CarousellItemProps> = ({
   name,
   imdb,
   desc,

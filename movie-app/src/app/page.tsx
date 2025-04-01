@@ -1,6 +1,6 @@
 "use client";
 import { Navigation } from "@/components/ui/Navigation";
-import { Scroll } from "@/components/ui/Scroll";
+import { Carousell } from "@/components/ui/Carousell";
 import { MovieList } from "@/components/ui/MovieList";
 import { Footer } from "@/components/ui/Footer";
 import { Suspense, useEffect, useState } from "react";
@@ -62,7 +62,7 @@ export default function Home() {
       {" "}
       <div className="w-screen h-[1600px] flex flex-col min-h-screen gap-[32px] items-center">
         <Navigation genreData={genreData} />
-        <Scroll data={nowPlayingData} />
+        <Carousell data={nowPlayingData} />
         <MoviebyCategory title="Upcoming" data={upcomingData} slice={10} />
         <MoviebyCategory title="Popular" data={popularData} slice={10} />
         <MoviebyCategory title="Top Rated" data={topData} slice={10} />

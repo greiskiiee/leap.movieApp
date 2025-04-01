@@ -7,13 +7,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ScrollItem } from "./ScrollItem";
+import { CarousellItem } from "./CarousellItem";
 
-interface ScrollData {
+interface CarousellData {
   data: any;
 }
 
-export const Scroll: React.FC<ScrollData> = ({ data }) => {
+export const Carousell: React.FC<CarousellData> = ({ data }) => {
   return (
     <div className="w-full h-[900px] flex items-center justify-center">
       <Carousel className="w-[80%] flex justify-center bg-transparent ">
@@ -31,7 +31,7 @@ export const Scroll: React.FC<ScrollData> = ({ data }) => {
               index: React.Key | null | undefined
             ) => (
               <CarouselItem key={index} className="w-[1720px] h-[900px] flex ">
-                <ScrollItem
+                <CarousellItem
                   trailer="https://youtu.be/6COmYeLsz4c?si=wWfINKdz7VTG0-KO"
                   img={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                   name={movie.original_title}
