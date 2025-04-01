@@ -9,6 +9,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+
 import { ChevronRight, Film, Moon } from "lucide-react";
 import { Popover, PopoverContent } from "./popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
@@ -16,6 +17,16 @@ import { Button } from "@/components/ui/button";
 import { SearchItem } from "./SearchItem";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "./command";
+import { Input } from "./input";
 
 const API_KEY = "d67d8bebd0f4ff345f6505c99e9d0289";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -148,47 +159,54 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                 </Button>
               </PopoverTrigger>
 
-              <PopoverContent className="w-[577px] mt-2 overflow-scroll">
-                <div className="h-fit flex flex-col overflow-scroll max-h-[600px]">
-                  {searchData.slice(0, 10).map(
-                    (
-                      movie: {
-                        original_title: string;
-                        vote_average: number;
-                        poster_path: string;
-                        id: number;
-                        release_date: string;
-                      },
-                      idx
-                    ) => {
-                      return (
-                        <div key={idx}>
-                          <SearchItem
-                            name={movie.original_title}
-                            rate={movie.vote_average}
-                            img_path={movie.poster_path}
-                            date={movie.release_date.split("-")[0]}
-                            onClick={() => {
-                              handleClickDetail(movie.id);
-                            }}
-                          />
-                          <div className="w-full h-[17px] flex justify-center items-center">
-                            <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
-                          </div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-
-                <div
-                  className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]"
-                  onClick={() => handleClickSearch(searchQuery)}
-                >
-                  <p className="inter font-[500] text-[14px] text-[#09090B]">
-                    See all results for {searchQuery}
-                  </p>
-                </div>
+              <PopoverContent className="w-[577px] mt-2 overflow-scroll h-[500px]">
+                <Command className="justify-between">
+                  <CommandList className="max-h-[500px]">
+                    {searchQuery.trim().length == 0 ? (
+                      <CommandEmpty>No results found.</CommandEmpty>
+                    ) : (
+                      <CommandGroup className="h-full">
+                        {searchData.slice(0, 10).map(
+                          (
+                            movie: {
+                              original_title: string;
+                              vote_average: number;
+                              poster_path: string;
+                              id: number;
+                              release_date: string;
+                            },
+                            idx
+                          ) => {
+                            return (
+                              <div key={idx}>
+                                <SearchItem
+                                  name={movie.original_title}
+                                  rate={movie.vote_average}
+                                  img_path={movie.poster_path}
+                                  date={movie.release_date.split("-")[0]}
+                                  onClick={() => {
+                                    handleClickDetail(movie.id);
+                                  }}
+                                />
+                                <div className="w-full h-[17px] flex justify-center items-center">
+                                  <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
+                                </div>
+                              </div>
+                            );
+                          }
+                        )}
+                      </CommandGroup>
+                    )}
+                  </CommandList>
+                  <div
+                    className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]"
+                    onClick={() => handleClickSearch(searchQuery)}
+                  >
+                    <p className="inter font-[500] text-[14px] text-[#09090B]">
+                      See all results for {searchQuery}
+                    </p>
+                  </div>
+                </Command>
               </PopoverContent>
             </Popover>
           </div>

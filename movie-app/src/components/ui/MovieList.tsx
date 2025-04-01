@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 interface MovieListProps {
   data?: any;
   className?: string;
-  sliceMax: number;
+  sliceMax?: number;
 }
 export const MovieList: React.FC<MovieListProps> = ({
   data,
@@ -20,9 +20,11 @@ export const MovieList: React.FC<MovieListProps> = ({
   };
 
   return (
-    <div className={`w-full h-fit flex flex-wrap gap-8 ${className}`}>
+    <div
+      className={`w-full h-fit flex flex-wrap gap-8 justify-between ${className}`}
+    >
       {/* <div className="w-full flex flex-wrap justify-center items-center gap-20 "> */}
-      {data.slice(0, sliceMax).map(
+      {data.slice(0, sliceMax || data.lenght).map(
         (
           movie: {
             original_title: string;

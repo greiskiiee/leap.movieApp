@@ -54,7 +54,7 @@ export default function Detail() {
         </div>
 
         <div className="flex w-full h-fit justify-between items-start ">
-          <MovieList data={searchData} className="p-0" sliceMax={16} />
+          <MovieList data={searchData} className="p-0" />
 
           <div className=" h-fit">
             <div className="flex flex-col">

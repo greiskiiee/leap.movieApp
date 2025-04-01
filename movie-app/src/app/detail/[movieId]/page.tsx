@@ -166,8 +166,6 @@ export default function Detail() {
             <StaffInfo role="Writers" who={writers} />
             <StaffInfo role="Stars" who={actors} />
           </div>
-
-          {/* <MovieList title="More Like This" /> */}
         </div>
       </div>
       <MoviebyCategory title={"More Like This"} data={similarData} slice={5} />
