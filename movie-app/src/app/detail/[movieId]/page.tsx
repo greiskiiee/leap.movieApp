@@ -1,22 +1,21 @@
 "use client";
-import { Footer } from "@/components/ui/Footer";
 import { MoviebyCategory } from "@/components/ui/MoviebyCategory";
 import { MovieGenre } from "@/components/ui/MovieGenre";
 import { Navigation } from "@/components/ui/Navigation";
 import { StaffInfo } from "@/components/ui/StaffInfo";
 import { axiosInstance } from "@/lib/utils";
-import { log } from "console";
-import { Dirent } from "fs";
+import { Play } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { Key, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 const BASE_URL = "https://image.tmdb.org/t/p/original";
-
+const YT_BASE = "https://www.youtube.com/watch?v=";
 export default function Detail() {
   const { movieId } = useParams();
   const [genreData, setGenre] = useState([]);
   const [similarData, setSimilar] = useState([]);
+  const [trailer, setTrailer] = useState<{ key: string }>({ key: "" });
   const [castData, setCastData] = useState<
     {
       known_for_department: string;
@@ -52,25 +51,35 @@ export default function Detail() {
     id: 0,
     runtime: 0,
   });
-  const promiseGenre = axiosInstance.get(`genre/movie/list?language=en&`);
-  const promiseMovie = axiosInstance.get(`movie/${movieId}?language=en-US&`);
-  const promiseSimilar = axiosInstance.get(
-    `movie/${movieId}/similar?language=en-US&page=1&`
-  );
-  const promiseCrew = axiosInstance.get(
-    `movie/${movieId}/credits?language=en-US`
-  );
 
   useEffect(() => {
-    Promise.all([promiseGenre, promiseMovie, promiseSimilar, promiseCrew]).then(
-      ([res1, res2, res3, res4]) => {
+    const fetchData = async () => {
+      try {
+        const [res1, res2, res3, res4, res5] = await Promise.all([
+          axiosInstance.get(`genre/movie/list?language=en&`),
+          axiosInstance.get(`movie/${movieId}?language=en-US&`),
+          axiosInstance.get(`movie/${movieId}/similar?language=en-US&page=1&`),
+          axiosInstance.get(`movie/${movieId}/credits?language=en-US`),
+          axiosInstance.get(`movie/${movieId}/videos?language=en-US`),
+        ]);
+
         setGenre(res1.data.genres);
         setMovie(res2.data);
         setSimilar(res3.data.results);
         setCrewData(res4.data.crew);
         setCastData(res4.data.cast);
+
+        const trailerVideo = res5.data.results.find(
+          (vid) => vid.type === "Trailer" && vid.site === "YouTube"
+        );
+
+        setTrailer(trailerVideo ? { key: trailerVideo.key } : { key: "" });
+      } catch (error) {
+        console.error("Error fetching data", error);
       }
-    );
+    };
+
+    fetchData();
   }, [movieId]);
 
   const hours = Math.floor(movie.runtime / 60);
@@ -133,17 +142,31 @@ export default function Detail() {
           </div>
 
           {/* movie posters */}
-          <div className="w-full h-fit md-[428px] flex justify-between items-center">
+          <div className="w-full h-fit md:h-[428px] flex justify-between items-center relative">
             <img
               src={`${BASE_URL}${movie.poster_path}`}
               alt="img1"
               className="rounded-sm w-[30%]"
             />
-            <img
-              src={`${BASE_URL}${movie.backdrop_path}`}
-              alt="poster2"
-              className="rounded-sm w-[65%] h-full"
-            />
+            <div className="relative w-[65%] h-full">
+              <img
+                src={`${BASE_URL}${movie.backdrop_path}`}
+                alt="poster2"
+                className="rounded-sm w-full h-full"
+              />
+              <a
+                className="absolute bottom-6 left-6 z-70 flex justify-start items-center gap-3"
+                href={`${YT_BASE}${trailer.key}`}
+                target="__blank"
+              >
+                <div className="rounded-full h-[40px] w-[40px] bg-[#fff] flex justify-center items-center">
+                  <Play strokeWidth={1} />
+                </div>
+                <span className="inter text-[16px] font-[400] text-white">
+                  Play Trailer
+                </span>
+              </a>
+            </div>
           </div>
         </div>
 
