@@ -1,11 +1,21 @@
 "use client";
-import { Footer } from "@/components/ui/Footer";
 import { MovieList } from "@/components/ui/MovieList";
 import { Navigation } from "@/components/ui/Navigation";
 import { axiosInstance } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+
+interface Movie {
+  id: number;
+  title: string;
+  genre_ids: number[];
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
 
 const fetchMovies = async (searchQuery: string) => {
   try {
@@ -28,9 +38,9 @@ const fetchMovies = async (searchQuery: string) => {
 
 export default function Detail() {
   const { searchQuery } = useParams() as { searchQuery?: string };
-  const [genreData, setGenre] = useState([]);
-  const [searchData, setSearchData] = useState([]);
-
+  const [genreData, setGenre] = useState<Genre[]>([]);
+  const [searchData, setSearchData] = useState<Movie[]>([]);
+  const [selectedGenre, setSelectedGenre] = useState<number[]>([]);
   useEffect(() => {
     if (searchQuery) {
       fetchMovies(searchQuery).then((data) => {
@@ -40,7 +50,19 @@ export default function Detail() {
     }
   }, [searchQuery]);
 
-  console.log(genreData);
+  const handleFilter = (genreId: number) => {
+    if (selectedGenre.includes(genreId)) {
+      setSelectedGenre(selectedGenre.filter((id) => id !== genreId));
+    } else {
+      setSelectedGenre([...selectedGenre, genreId]);
+    }
+  };
+
+  const filteredMovies = selectedGenre.length
+    ? searchData.filter((movie) =>
+        selectedGenre.some((id) => movie.genre_ids.includes(id))
+      )
+    : searchData;
 
   return (
     <div className="w-screen flex flex-col min-h-screen gap-8 items-center pb-16">
@@ -54,7 +76,7 @@ export default function Detail() {
         </div>
 
         <div className="flex w-full h-fit justify-between items-start gap-6 ">
-          <MovieList data={searchData} className="p-0" />
+          <MovieList data={filteredMovies} className="p-0" />
 
           <div className="h-fit lg:w-[400px]">
             <div className="flex flex-col">
@@ -71,20 +93,27 @@ export default function Detail() {
             <div className="max-w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
               {genreData.map((genre: { name: string; id: number }) => {
                 return (
-                  <div className="rounded-full" key={genre.id}>
-                    <a
-                      className="flex h-[20px] w-fit rounded-full justify-center items-center py-[2px] pr-1 pl-[10px] gap-2 border-1 border-[#E4E4E7] focus:shadow-md"
-                      href="/"
-                    >
-                      <div className="w-full flex justify-center items-center text-[12px] inter font-[600] text-[#09090B]">
-                        {genre.name}
+                  <div
+                    className={`rounded-full ${
+                      selectedGenre.includes(genre.id) ? "border-2" : "border-0"
+                    }`}
+                    key={genre.id}
+                    onClick={() => {
+                      handleFilter(genre.id);
+                    }}
+                  >
+                    <div className="flex h-[20px] w-fit rounded-full justify-center items-center py-[2px] pr-1 pl-[10px] gap-2 border-1 border-[#E4E4E7] focus:shadow-md text-[12px] inter font-[600] text-[#09090B]">
+                      {genre.name}
+                      {selectedGenre.includes(genre.id) ? (
+                        <X size={16} strokeWidth={2} color="#09090B" />
+                      ) : (
                         <ChevronRight
                           size={16}
                           strokeWidth={1}
                           color="#09090B"
                         />
-                      </div>
-                    </a>
+                      )}
+                    </div>
                   </div>
                 );
               })}

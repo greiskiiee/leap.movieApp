@@ -16,7 +16,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <div
-      className="max-w-[260px] max-h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70 lg:w-[180px] lg:h-[340px]"
+      className="w-[230px] h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70 lg:w-[180px] lg:h-[340px] 2xl:w-[230px] 2xl:h-[440px]"
       onClick={onClick}
     >
       <img src={img} className="w-[260px] h-[80%] rounded-t-md" />
