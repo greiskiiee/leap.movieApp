@@ -78,6 +78,8 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
     router.push(`/search/${searchQuery}`);
   };
 
+  const toFilter = () => router.push(`/filter/`);
+
   return (
     <div className="w-[80%] h-[59px] flex items-center justify-center mb-[1px] mt-4">
       <div className="w-full h-[36px] flex justify-between items-center ">
@@ -100,7 +102,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                   Genre
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-5 ">
-                  <div className="flex flex-col">
+                  <div className="flex flex-col" onClick={toFilter}>
                     <p className="text-[#09090B] text-[24px] font-[600] inter">
                       Genre
                     </p>
