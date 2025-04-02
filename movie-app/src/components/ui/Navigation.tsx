@@ -160,53 +160,48 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
               </PopoverTrigger>
 
               <PopoverContent className="w-[577px] mt-2 overflow-scroll max-h-[500px] h-fit">
-                <Command className="justify-between">
-                  <CommandList className="max-h-[500px] h-full">
-                    {searchQuery.trim().length == 0 ? (
-                      <CommandEmpty>No results found.</CommandEmpty>
-                    ) : (
-                      <CommandGroup className="h-full">
-                        {searchData.slice(0, 10).map(
-                          (
-                            movie: {
-                              original_title: string;
-                              vote_average: number;
-                              poster_path: string;
-                              id: number;
-                              release_date: string;
-                            },
-                            idx
-                          ) => {
-                            return (
-                              <div key={idx}>
-                                <SearchItem
-                                  name={movie.original_title}
-                                  rate={movie.vote_average}
-                                  img_path={movie.poster_path}
-                                  date={movie.release_date.split("-")[0]}
-                                  onClick={() => {
-                                    handleClickDetail(movie.id);
-                                  }}
-                                />
-                                <div className="w-full h-[17px] flex justify-center items-center">
-                                  <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
-                                </div>
-                              </div>
-                            );
-                          }
-                        )}
-                      </CommandGroup>
+                <div className="flex flex-col gap-1">
+                  <div className="flex flex-col h-[420px] overflow-scroll">
+                    {searchData.slice(0, 10).map(
+                      (
+                        movie: {
+                          original_title: string;
+                          vote_average: number;
+                          poster_path: string;
+                          id: number;
+                          release_date: string;
+                        },
+                        idx
+                      ) => {
+                        return (
+                          <div key={idx}>
+                            <SearchItem
+                              name={movie.original_title}
+                              rate={movie.vote_average}
+                              img_path={movie.poster_path}
+                              date={movie.release_date.split("-")[0]}
+                              onClick={() => {
+                                handleClickDetail(movie.id);
+                              }}
+                            />
+                            <div className="w-full h-[17px] flex justify-center items-center">
+                              <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
+                            </div>
+                          </div>
+                        );
+                      }
                     )}
-                  </CommandList>
+                  </div>
+
                   <div
-                    className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px]"
+                    className="w-fit h-[40px] flex justify-center items-center py-[8px] px-[16px] "
                     onClick={() => handleClickSearch(searchQuery)}
                   >
                     <p className="inter font-[500] text-[14px] text-[#09090B]">
                       See all results for {searchQuery}
                     </p>
                   </div>
-                </Command>
+                </div>
               </PopoverContent>
             </Popover>
           </div>
