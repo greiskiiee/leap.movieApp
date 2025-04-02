@@ -43,7 +43,7 @@ export default function Detail() {
   console.log(genreData);
 
   return (
-    <div className="w-screen flex flex-col min-h-screen gap-8 items-center">
+    <div className="w-screen flex flex-col min-h-screen gap-8 items-center pb-16">
       <Navigation genreData={genreData} />
 
       <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">
@@ -56,7 +56,7 @@ export default function Detail() {
         <div className="flex w-full h-fit justify-between items-start gap-6 ">
           <MovieList data={searchData} className="p-0" />
 
-          <div className=" h-fit">
+          <div className="h-fit lg:w-[400px]">
             <div className="flex flex-col">
               <p className="text-[#09090B] text-[24px] font-[600] inter">
                 Search by Genre
@@ -68,7 +68,7 @@ export default function Detail() {
             <div className="w-full h-[33px] flex justify-center items-center">
               <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
             </div>
-            <div className="w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
+            <div className="max-w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
               {genreData.map((genre: { name: string; id: number }) => {
                 return (
                   <div className="rounded-full" key={genre.id}>
@@ -92,7 +92,6 @@ export default function Detail() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

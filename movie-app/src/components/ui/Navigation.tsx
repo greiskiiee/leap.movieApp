@@ -159,9 +159,9 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                 </Button>
               </PopoverTrigger>
 
-              <PopoverContent className="w-[577px] mt-2 overflow-scroll h-[500px]">
+              <PopoverContent className="w-[577px] mt-2 overflow-scroll max-h-[500px] h-fit">
                 <Command className="justify-between">
-                  <CommandList className="max-h-[500px]">
+                  <CommandList className="max-h-[500px] h-full">
                     {searchQuery.trim().length == 0 ? (
                       <CommandEmpty>No results found.</CommandEmpty>
                     ) : (

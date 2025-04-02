@@ -16,7 +16,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <div
-      className="max-w-[260px] h-[440px] min-h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70"
+      className="max-w-[260px] max-h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70 lg:w-[180px] lg:h-[340px]"
       onClick={onClick}
     >
       <img src={img} className="w-[260px] h-[80%] rounded-t-md" />
@@ -32,7 +32,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           </p>
         </div>
 
-        <p className="inter text-[#09090B] text-[16px] font-[400] text-start ">
+        <p className="inter text-[#09090B] text-[16px] font-[400] text-start lg:text-[14px]">
           {" "}
           {title}
         </p>

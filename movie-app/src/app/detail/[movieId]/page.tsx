@@ -92,7 +92,7 @@ export default function Detail() {
 
   console.log(director, writers, actors);
   return (
-    <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center">
+    <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center pb-16">
       <Navigation genreData={genreData} />
 
       <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">
@@ -148,13 +148,11 @@ export default function Detail() {
         </div>
 
         {/* movie description */}
-        <div className="flex flex-col w-full h-fit gap-5 items-center justify-start">
+        <div className="flex flex-col w-full h-fit gap-5 items-center justify-start text-justify">
           <div className="w-full h-fit flex gap-[10px] items-center justify-start">
             {movie.genres?.map((genre) => {
               return <MovieGenre genreName={genre.name} key={genre.id} />;
             })}
-            {/* <MovieGenre genreName="Fairy Tale" />
-            <MovieGenre genreName="Pop Musical" /> */}
           </div>
 
           <p className="w-full text-[16px] font-[400] inter text-[#09090B]">
@@ -169,8 +167,6 @@ export default function Detail() {
         </div>
       </div>
       <MoviebyCategory title={"More Like This"} data={similarData} slice={5} />
-
-      <Footer />
     </div>
   );
 }

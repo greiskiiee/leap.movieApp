@@ -15,11 +15,11 @@ interface CarousellData {
 
 export const Carousell: React.FC<CarousellData> = ({ data }) => {
   return (
-    <div className="w-full h-[900px] flex items-center justify-center">
-      <Carousel className="w-[80%] flex justify-center bg-transparent ">
+    <div className="w-full h-[800px] flex items-center justify-center lg:h-[700px]">
+      <Carousel className="w-[80%] flex justify-center bg-transparent h-full">
         <CarouselPrevious className="z-50 left-[50px]" />
         <CarouselNext className="z-50 right-[50px]" />
-        <CarouselContent className="z-10 w-full left-0 top-0 bg-transparent">
+        <CarouselContent className="z-10 w-full left-0 top-0 bg-transparent ">
           {data.slice(0, 5).map(
             (
               movie: {

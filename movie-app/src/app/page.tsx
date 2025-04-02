@@ -8,9 +8,6 @@ import { HomeSkeleton } from "@/components/ui/skeletons/HomeSkeleton";
 import { axiosInstance } from "@/lib/utils";
 import { MoviebyCategory } from "@/components/ui/MoviebyCategory";
 
-const API_KEY = "d67d8bebd0f4ff345f6505c99e9d0289";
-const BASE_URL = "https://api.themoviedb.org/3";
-
 const fetchMovies = async () => {
   try {
     const endpoints = [
@@ -60,13 +57,12 @@ export default function Home() {
   return (
     <Suspense fallback={<HomeSkeleton />}>
       {" "}
-      <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center">
+      <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center pb-16">
         <Navigation genreData={genreData} />
         <Carousell data={nowPlayingData} />
         <MoviebyCategory title="Upcoming" data={upcomingData} slice={10} />
         <MoviebyCategory title="Popular" data={popularData} slice={10} />
         <MoviebyCategory title="Top Rated" data={topData} slice={10} />
-        <Footer />
       </div>
     </Suspense>
     // <div className="w-[1000px] h-fit p-10 flex flex-wrap gap-4">
