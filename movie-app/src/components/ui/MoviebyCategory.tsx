@@ -14,8 +14,6 @@ export const MoviebyCategory: React.FC<MoviebyCategoryProps> = ({
   data,
   slice,
 }) => {
-  const router = useRouter();
-
   return (
     <div
       className={`w-[80%] h-fit flex flex-col gap-[32px] justify-center items-center`}
