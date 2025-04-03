@@ -133,7 +133,7 @@ export default function Detail() {
             </span>
 
             {filteredMovies.length > 0 ? (
-              <MovieList data={filteredMovies} className="p-0" />
+              <MovieList data={filteredMovies} className="justify-start" />
             ) : (
               <p className="text-gray-500">
                 No movies found for the selected genre(s).

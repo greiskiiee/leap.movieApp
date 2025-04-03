@@ -18,8 +18,9 @@ export const CarousellItem: React.FC<CarousellItemProps> = ({
 }) => {
   return (
     <div className="w-full h-full absolute ">
-      <img src={img} className="w-full h-full relative z-20 " />
-      <div className="max-w-[404px] max-h-[206px] relative z-90 left-1/8 top-[-60%] bg-transparent flex flex-col gap-[16px]">
+      <img src={img} className="w-full h-full relative z-20 object-cover " />
+
+      <div className="max-w-[404px] max-h-[206px] relative z-90 left-1/8 top-[-70%] bg-transparent flex flex-col gap-[16px]">
         <div className="flex flex-col">
           <p className="text-[16px] font-[400] inter text-white">
             Now Playing:

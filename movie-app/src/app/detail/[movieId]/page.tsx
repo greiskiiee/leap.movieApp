@@ -70,7 +70,8 @@ export default function Detail() {
         setCastData(res4.data.cast);
 
         const trailerVideo = res5.data.results.find(
-          (vid) => vid.type === "Trailer" && vid.site === "YouTube"
+          (vid: { type: string; site: string }) =>
+            vid.type === "Trailer" && vid.site === "YouTube"
         );
 
         setTrailer(trailerVideo ? { key: trailerVideo.key } : { key: "" });
@@ -106,36 +107,34 @@ export default function Detail() {
 
       <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">
         <div className="w-full h-fit flex flex-col justify-center items-center gap-6">
-          {/* movie title */}
-          <div className="w-full h-fit">
-            <div className="w-full h-fit flex justify-between items-center">
-              <div className="w-fit h-full flex flex-col gap-1">
-                <p className="inter font-[700] text-[36px] text-[#09090B]">
-                  {movie.original_title}
-                </p>
-                <p className="inter font-[400] text-[18px] text-[#09090B]">
-                  {movie.release_date} · PG · {hours}h {minutes}m
-                </p>
-              </div>
+          {/* movie title and rating */}
+          <div className="w-full h-fit flex justify-between items-center">
+            <div className="w-fit h-full flex flex-col gap-1">
+              <p className="inter font-[700] text-[36px] text-[#09090B]">
+                {movie.original_title}
+              </p>
+              <p className="inter font-[400] text-[18px] text-[#09090B]">
+                {movie.release_date} · PG · {hours}h {minutes}m
+              </p>
+            </div>
 
-              <div className="flex flex-col w-fit h-full justify-start items-start gap-1">
-                <p className="inter font-[500] text-[12px] text-[#09090B]">
-                  Rating
-                </p>
+            <div className="flex flex-col w-fit h-full justify-start items-start gap-1">
+              <p className="inter font-[500] text-[12px] text-[#09090B]">
+                Rating
+              </p>
 
-                <div className="w-full h-[48px] flex gap-[4px]">
-                  <FaStar size={28} fill="#FDE047" />
-                  <div className="flex flex-col justify-start items-start">
-                    <p className="inter font-[600] text-[18px] text-[#09090B]">
-                      {movie.vote_average}
-                      <span className="inter font-[400] text-[16px] text-[#71717A]">
-                        /10
-                      </span>
-                    </p>
-                    <p className="inter font-[400] text-[12px] text-[#71717A]">
-                      {movie.vote_count}
-                    </p>
-                  </div>
+              <div className="w-full h-[48px] flex gap-[4px]">
+                <FaStar size={28} fill="#FDE047" />
+                <div className="flex flex-col justify-start items-start">
+                  <p className="inter font-[600] text-[18px] text-[#09090B]">
+                    {movie.vote_average}
+                    <span className="inter font-[400] text-[16px] text-[#71717A]">
+                      /10
+                    </span>
+                  </p>
+                  <p className="inter font-[400] text-[12px] text-[#71717A]">
+                    {movie.vote_count}
+                  </p>
                 </div>
               </div>
             </div>
@@ -146,7 +145,7 @@ export default function Detail() {
             <img
               src={`${BASE_URL}${movie.poster_path}`}
               alt="img1"
-              className="rounded-sm w-[30%]"
+              className="rounded-sm w-[30%] h-full"
             />
             <div className="relative w-[65%] h-full">
               <img

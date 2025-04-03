@@ -18,14 +18,14 @@ export const MoviebyCategory: React.FC<MoviebyCategoryProps> = ({
 
   return (
     <div
-      className={`w-full h-fit px-[80px] flex flex-col gap-[32px] justify-center items-center`}
+      className={`w-[80%] h-fit flex flex-col gap-[32px] justify-center items-center`}
     >
-      <div className="w-full h-[36px] flex justify-between items-center px-20">
+      <div className="w-full h-[36px] flex justify-between items-center ">
         <p className="inter text-[24px] font-[600] text-[#09090B]">{title}</p>
         <SeeMoreButton />
       </div>
 
-      <MovieList data={data} className="px-20" sliceMax={slice} />
+      <MovieList data={data} className="" sliceMax={slice} />
     </div>
   );
 };
