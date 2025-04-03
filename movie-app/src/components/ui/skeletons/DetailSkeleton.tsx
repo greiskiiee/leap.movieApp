@@ -1,28 +1,7 @@
-import { MoviebyCategory } from "@/components/ui/MoviebyCategory";
-import { MovieGenre } from "@/components/ui/MovieGenre";
-import { Navigation } from "@/components/ui/Navigation";
-import { DetailSkeleton } from "@/components/ui/skeletons/DetailSkeleton";
-import { StaffInfo } from "@/components/ui/StaffInfo";
-import { axiosInstance } from "@/lib/utils";
-import { Play } from "lucide-react";
-// import { useParams } from "next/navigation";
-import React, { Suspense } from "react";
-import { FaStar } from "react-icons/fa";
-import { DetailTest } from "@/components/ui/forSkeleton/DetailTest";
-import { Skeleton } from "@/components/ui/skeleton";
+import React from "react";
+import { Skeleton } from "../skeleton";
 
-const BASE_URL = "https://image.tmdb.org/t/p/original";
-const YT_BASE = "https://www.youtube.com/watch?v=";
-export default function Detail() {
-  return (
-    <Suspense fallback={<Loading />}>
-      <DetailTest />
-    </Suspense>
-  );
-}
-
-function Loading() {
-  console.log("working");
+export const DetailSkeleton = () => {
   return (
     <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center pb-16">
       <div className="w-[80%] h-fit flex flex-col justify-start items-center gap-6">
@@ -39,7 +18,7 @@ function Loading() {
                 Rating
               </p>
 
-              <div className="w-full h-[48px] flex gap-[4px] pt-1">
+              <div className="w-full h-[48px] flex flex-col gap-[4px] pt-1">
                 <Skeleton className="w-[83px] h-[20px] bg-[#F4F4F5] rounded-full"></Skeleton>
                 <Skeleton className="w-[83px] h-[20px] bg-[#F4F4F5] rounded-full"></Skeleton>
               </div>
@@ -54,7 +33,7 @@ function Loading() {
         </div>
 
         {/* movie description */}
-        <div className="flex flex-col w-full h-fit gap-5 items-center justify-start text-justify">
+        <div className="flex flex-col w-full h-fit gap-5 items-start justify-start text-justify">
           <div className="flex gap-3 justify-start items-center h-fit">
             <Skeleton className="w-[77px] h-[20px] bg-[#F4F4F5] rounded-full"></Skeleton>
             <Skeleton className="w-[77px] h-[20px] bg-[#F4F4F5] rounded-full"></Skeleton>
@@ -67,28 +46,28 @@ function Loading() {
           </div>
 
           <div className="flex flex-col w-full h-fit gap-5">
-            <div className="w-full flex flex-col">
+            <div className="w-full flex flex-col gap-2">
               <div className="w-full flex gap-[53px]">
                 <Skeleton className="w-[64px] h-[28px] bg-[#F4F4F5] rounded-full"></Skeleton>
                 <Skeleton className="w-[137px] h-[28px] bg-[#F4F4F5] rounded-full"></Skeleton>
               </div>
-              <Skeleton className="w-full h-[9px] bg-[#F4F4F5] py-1"></Skeleton>
+              <Skeleton className="w-full h-[2px] bg-[#F4F4F5] py-1"></Skeleton>
             </div>
 
-            <div className="w-full flex flex-col">
+            <div className="w-full flex flex-col gap-2">
               <div className="w-full flex gap-[53px]">
                 <Skeleton className="w-[64px] h-[28px] bg-[#F4F4F5] rounded-full"></Skeleton>
                 <Skeleton className="w-[360px] h-[28px] bg-[#F4F4F5] rounded-full"></Skeleton>
               </div>
-              <Skeleton className="w-full h-[9px] bg-[#F4F4F5] py-1"></Skeleton>
+              <Skeleton className="w-full h-[2px] bg-[#F4F4F5] py-1"></Skeleton>
             </div>
 
-            <div className="w-full flex flex-col">
+            <div className="w-full flex flex-col gap-2">
               <div className="w-full flex gap-[53px]">
                 <Skeleton className="w-[64px] h-[28px] bg-[#F4F4F5] rounded-full"></Skeleton>
                 <Skeleton className="w-[355px] h-[28px] bg-[#F4F4F5] rounded-full"></Skeleton>
               </div>
-              <Skeleton className="w-full h-[9px] bg-[#F4F4F5] py-1"></Skeleton>
+              <Skeleton className="w-full h-[2px] bg-[#F4F4F5] py-1"></Skeleton>
             </div>
           </div>
 
@@ -98,15 +77,15 @@ function Loading() {
               <Skeleton className="w-[165px] h-[36px] bg-[#F4F4F5] rounded-full"></Skeleton>
             </div>
             <div className="w-full flex justify-between">
-              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-full"></Skeleton>
-              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-full"></Skeleton>
-              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-full"></Skeleton>
-              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-full"></Skeleton>
-              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-full"></Skeleton>
+              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-md"></Skeleton>
+              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-md"></Skeleton>
+              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-md"></Skeleton>
+              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-md"></Skeleton>
+              <Skeleton className="w-[190px] h-[372px] bg-[#F4F4F5] rounded-md"></Skeleton>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
