@@ -51,6 +51,7 @@ export default function Detail() {
   const [selectedGenre, setSelectedGenre] = useState<number[]>([]);
   const [page, setPage] = useState(1);
 
+  // const params = useSearchParams();
   useEffect(() => {
     const genreQuery = selectedGenre.length > 0 ? selectedGenre.join(",") : "";
     fetchMovies(genreQuery, page).then((data) => {

@@ -15,7 +15,7 @@ import { Popover, PopoverContent } from "./popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
 import { SearchItem } from "./SearchItem";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import {
   Command,
@@ -113,7 +113,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                   <div className="w-full h-[33px] flex justify-center items-center">
                     <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
                   </div>
-                  <div className="max-w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
+                  <div className="w-[400px] max-w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
                     {genreData.map((genre: { name: string; id: number }) => {
                       return (
                         <NavigationMenuLink
@@ -123,7 +123,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                         >
                           <a
                             className="flex h-[20px] w-fit justify-center items-center py-[2px] pr-1 pl-[10px] gap-2 border-1 border-[#E4E4E7] focus:shadow-md"
-                            href="/"
+                            href="/filter/"
                           >
                             <div className="w-full flex justify-center items-center text-[12px] inter font-[600] text-[#09090B]">
                               {genre.name}
@@ -143,13 +143,14 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="max-w-[539px] h-[36px] ">
+          <div className="w-[500px] max-w-[539px] h-[36px] ">
             <Popover>
               <PopoverTrigger asChild>
-                <Button
+                {/* <Button
                   variant="outline"
                   className="w-full h-full border-1 border-[#E4E4E7] rounded-md flex items-center justify-start px-[12px] gap-[10px]"
-                >
+                > */}
+                <div>
                   <CiSearch size={16} className="opacity-50" />
                   <input
                     ref={inputRef}
@@ -158,12 +159,14 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                     className="text-[14px] outline-0 w-full"
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                   />
-                </Button>
+                </div>
+
+                {/* </Button> */}
               </PopoverTrigger>
 
-              <PopoverContent className="w-[577px] mt-2 overflow-scroll max-h-[500px] h-fit">
+              <PopoverContent className="w-[577px] h-fit mt-2 overflow-scroll max-h-[500px] ">
                 <div className="flex flex-col gap-1">
-                  <div className="flex flex-col h-[420px] overflow-scroll">
+                  <div className="flex flex-col h-fit max-h-[420px] overflow-scroll">
                     {searchData.slice(0, 10).map(
                       (
                         movie: {
