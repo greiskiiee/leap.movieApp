@@ -3,9 +3,10 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <div className="w-screen h-[280px] flex bg-[#4338CA] p-[40px] gap-[120px] justify-center items-center">
-      <div className="w-[80%] flex justify-between">
-        <div className="w-[247px] h-[200px] flex flex-col justify-start items-start gap-[12px]">
+    <div className="w-screen h-fit flex bg-[#4338CA] gap-[120px] justify-center items-center md:p-16 py-4 ">
+      <div className="w-[80%] flex flex-wrap justify-between gap-7 sm:flex-row">
+        {/* logo */}
+        <div className="max-w-[247px] h-fit flex flex-col justify-start items-start gap-[12px]">
           <div className="w-[92px] h-[36px] flex gap-[8px] justify-center items-center">
             <Film size={20} color="#FAFAFA" strokeWidth={1} />
             <p className="inter italic font-[700] text-[#FAFAFA] text-[16px]">
@@ -18,7 +19,7 @@ export const Footer = () => {
           </p>
         </div>
 
-        <div className="w-[913px] flex justify-end gap-[96px]">
+        <div className="max-w-[913px] flex justify-end gap-12 md:gap-[96px]">
           <div className="w-fit h-[200px] flex flex-col justify-start items-start gap-[12px]">
             <p className="inter font-[400] text-[#FAFAFA] text-[14px]">
               Contact Information
@@ -56,7 +57,7 @@ export const Footer = () => {
               Follow us{" "}
             </p>
 
-            <div className="flex gap-[12px]">
+            <div className="flex flex-wrap gap-[12px] w-[112px] md:w-fit">
               <a
                 href=""
                 className="inter font-[500] text-[#FAFAFA] text-[14px]"

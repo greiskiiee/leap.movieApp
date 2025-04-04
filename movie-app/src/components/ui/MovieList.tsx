@@ -21,7 +21,7 @@ export const MovieList: React.FC<MovieListProps> = ({
 
   return (
     <div
-      className={`w-full h-fit flex flex-wrap gap-8 justify-between ${className}`}
+      className={`w-full h-fit flex flex-wrap gap-5 justify-between ${className} md:gap-8`}
     >
       {data.slice(0, sliceMax || data.lenght).map(
         (

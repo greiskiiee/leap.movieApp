@@ -17,19 +17,26 @@ export const CarousellItem: React.FC<CarousellItemProps> = ({
   trailer,
 }) => {
   return (
-    <div className="w-full h-full absolute ">
-      <img src={img} className="w-full h-full relative z-20 object-cover " />
+    <div className="w-full h-fit flex flex-col sm:absolute sm:bottom-0 sm:justify-end sm:h-full ">
+      <img
+        src={img}
+        className="h-[246px] sm:w-full sm:h-full relative z-20 object-cover "
+      />
 
-      <div className="max-w-[404px] max-h-[206px] relative z-90 left-1/8 top-[-70%] bg-transparent flex flex-col gap-[16px]">
-        <div className="flex flex-col">
-          <p className="text-[16px] font-[400] inter text-white">
-            Now Playing:
-          </p>
-          <p className="inter text-[36px] font-[700] text-white ">{name}</p>
+      <div className="h-fit max-w-[404px] sm:max-h-[206px] sm:relative sm:z-90 sm:left-1/8 sm:top-[-60%] bg-transparent flex flex-col gap-[16px] p-4 sm:p-0">
+        <div className="flex sm:flex-col justify-between items-center sm:items-start">
+          <div className="flex flex-col">
+            <p className=" text-[14px] sm:text-[16px] font-[400] inter text-[#09090B] sm:text-white">
+              Now Playing:
+            </p>
+            <p className="inter text-[24px] sm:text-[36px] font-[700] text-[#09090B] sm:text-white ">
+              {name}
+            </p>
+          </div>
 
           <div className="flex w-fit h-fit justify-start items-center gap-[4px]">
             <FaStar size={28} fill="#FDE047" />
-            <p className="inter text-white text-[18px] font-[600]">
+            <p className="inter text-[#09090B] sm:text-white text-[18px] font-[600]">
               {imdb}
               <span className="inter text-[#71717A] text-[16px]  font-[400]">
                 /10
@@ -38,7 +45,7 @@ export const CarousellItem: React.FC<CarousellItemProps> = ({
           </div>
         </div>
 
-        <p className="w-[300px] text-[#FAFAFA] inter text-[12px] font-[400] text-start ">
+        <p className="max-w-[300px] text-[#09090B] sm:text-[#FAFAFA] inter text-[14px] sm:text-[12px] font-[400] text-start ">
           {desc}
         </p>
         <TrailerButton trailer={trailer} />

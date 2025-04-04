@@ -7,7 +7,7 @@ import { StaffInfo } from "@/components/ui/StaffInfo";
 import { axiosInstance } from "@/lib/utils";
 import { Play } from "lucide-react";
 import { useParams } from "next/navigation";
-import React, { Key, Suspense, useEffect, useState } from "react";
+import React, { Key, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 const BASE_URL = "https://image.tmdb.org/t/p/original";
@@ -105,7 +105,23 @@ export const DetailTest = () => {
     .slice(0, 3)
     .map((a) => a.name)
     .join(" · ");
+
+  const [showTrailer, setShowTrailer] = useState(false);
+
+  const handleTrailer = () => {
+    setShowTrailer(true);
+  };
+
+  // const handleTrailer = (key: string) => {
+  //   console.log("working");
+  //   return (
+  //     <video width={500} height={400}>
+  //       <source src={`${YT_BASE}${key}`} type="video" />
+  //     </video>
+  //   );
+  // };
   if (movie.id === 0) return <DetailSkeleton />;
+
   return (
     <div className="w-screen flex flex-col min-h-screen gap-[32px] items-center pb-16">
       <Navigation genreData={genreData} />
@@ -160,10 +176,13 @@ export const DetailTest = () => {
               />
               <a
                 className="absolute bottom-6 left-6 z-70 flex justify-start items-center gap-3"
-                href={`${YT_BASE}${trailer.key}`}
+                // href={`${YT_BASE}${trailer.key}`}
                 target="__blank"
               >
-                <div className="rounded-full h-[40px] w-[40px] bg-[#fff] flex justify-center items-center">
+                <div
+                  className="rounded-full h-[40px] w-[40px] bg-[#fff] flex justify-center items-center"
+                  onClick={handleTrailer}
+                >
                   <Play strokeWidth={1} />
                 </div>
                 <span className="inter text-[16px] font-[400] text-white">
@@ -173,6 +192,13 @@ export const DetailTest = () => {
             </div>
           </div>
         </div>
+        {showTrailer && (
+          <div className="absolute z-80 left-1/2 top-1/2 flex justify-center items-center bg-black bg-opacity-70">
+            <video width={500} height={400} controls autoPlay>
+              <source src={`${YT_BASE}${trailer.key}`} type="video/mp4" />
+            </video>
+          </div>
+        )}
 
         {/* movie description */}
         <div className="flex flex-col w-full h-fit gap-5 items-center justify-start text-justify">

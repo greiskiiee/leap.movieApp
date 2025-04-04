@@ -10,7 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-import { ChevronRight, Film, Moon } from "lucide-react";
+import { ChevronRight, Film, Moon, Search } from "lucide-react";
 import { Popover, PopoverContent } from "./popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
@@ -88,14 +88,14 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
           onClick={onClick}
         >
           <Film size={20} color="#4338CA" strokeWidth={1} />
-          <p className="inter italic font-[700] text-[#4338CA] text-[16px]">
+          <p className="inter italic font-[700] text-[#4338CA] text-[16px] w-[64px]">
             {" "}
             Movie Z
           </p>
         </div>
 
-        <div className="w-fit h-[36px] flex justify-center items-center gap-[12px]">
-          <NavigationMenu className="h-[36px]">
+        <div className="w-fit h-[36px] flex flex-wrap justify-center items-center gap-[12px] invisible md:visible">
+          <NavigationMenu className="w-fit h-[36px]">
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-[14px] border border-[#E4E4E7]">
@@ -113,7 +113,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                   <div className="w-full h-[33px] flex justify-center items-center">
                     <div className="w-full bg-[#E4E4E7] h-[1px]"></div>
                   </div>
-                  <div className="w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
+                  <div className="max-w-[500px] h-fit flex justify-start items-start flex-wrap gap-4 ">
                     {genreData.map((genre: { name: string; id: number }) => {
                       return (
                         <NavigationMenuLink
@@ -143,7 +143,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="w-[539px] h-[36px] ">
+          <div className="max-w-[539px] h-[36px] ">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -209,8 +209,13 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
           </div>
         </div>
 
-        <div className="w-[36px] h-[36px] flex justify-center items-center border-1 border-[#E4E4E7] shadow-sm rounded-md">
-          <Moon size={20} strokeWidth="1" />
+        <div className="gap-3 flex justify-start w-fit">
+          <div className="w-[36px] h-[36px] flex justify-center items-center border-1 border-[#E4E4E7] shadow-sm rounded-md md:invisible">
+            <Search size={20} strokeWidth="1" />
+          </div>
+          <div className="w-[36px] h-[36px] flex justify-center items-center border-1 border-[#E4E4E7] shadow-sm rounded-md">
+            <Moon size={20} strokeWidth="1" />
+          </div>
         </div>
       </div>
     </div>

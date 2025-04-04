@@ -16,7 +16,7 @@ export const MoviebyCategory: React.FC<MoviebyCategoryProps> = ({
 }) => {
   return (
     <div
-      className={`w-[80%] h-fit flex flex-col gap-[32px] justify-center items-center`}
+      className={`w-full h-fit flex flex-col gap-5 justify-center items-center p-5 md:w-[80%] md:p-0`}
     >
       <div className="w-full h-[36px] flex justify-between items-center ">
         <p className="inter text-[24px] font-[600] text-[#09090B]">{title}</p>

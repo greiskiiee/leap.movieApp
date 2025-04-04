@@ -16,10 +16,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <div
-      className="w-[230px] h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70 lg:w-[180px] lg:h-[340px] 2xl:w-[230px] 2xl:h-[440px]"
+      className="w-[157px] h-[309px] sm:w-[230px] sm:h-[440px] flex flex-col gap-1 justify-start items-start bg-[#F4F4F5] rounded-md hover:opacity-70 lg:w-[180px] lg:h-[340px] 2xl:w-[230px] 2xl:h-[440px]"
       onClick={onClick}
     >
-      <img src={img} className="w-[260px] h-[80%] rounded-t-md" />
+      <img src={img} className="w-full h-[80%] rounded-t-md" />
 
       <div className="w-full flex flex-col justify-start items-start p-2">
         <div className="flex w-fit h-fit justify-start items-center gap-[4px]">

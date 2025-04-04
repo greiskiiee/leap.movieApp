@@ -53,13 +53,35 @@ export const Carousell: React.FC<CarousellData> = ({ data }) => {
     fetchTrailers();
   }, [data]);
   return (
-    <div className="w-full h-[800px] flex items-center justify-center lg:h-[700px]">
-      <Carousel className="w-[80%] flex justify-center bg-transparent h-full">
-        <CarouselPrevious className="z-50 left-[50px]" />
-        <CarouselNext className="z-50 right-[50px]" />
-        <CarouselContent className="z-10 w-full left-0 top-0 bg-transparent ">
+    // <div className="w-full h-[800px] flex items-center justify-center lg:h-[700px] ">
+    //   <Carousel className="w-[80%] flex justify-center bg-transparent h-full">
+    //     <CarouselPrevious className="z-50 left-[50px]" />
+    //     <CarouselNext className="z-50 right-[50px]" />
+    //     <CarouselContent className="z-10 w-full left-0 top-0 bg-transparent ">
+    //       {data.slice(0, 5).map((movie) => (
+    //         <CarouselItem key={movie.id} className="w-[1720px] h-[900px] flex ">
+    //           <CarousellItem
+    //             trailer={trailers[movie.id]}
+    //             img={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+    //             name={movie.original_title}
+    //             imdb={movie.vote_average}
+    //             desc={movie.overview}
+    //           />
+    //         </CarouselItem>
+    //       ))}
+    //     </CarouselContent>
+    //   </Carousel>
+    // </div>
+    <div className="w-full h-[600px] sm:min-h-[700px] lg:min-h-[700px] flex items-center justify-center ">
+      <Carousel className="w-[80%] flex justify-center bg-transparent h-full sm:h-full">
+        <CarouselPrevious className="z-50 left-[50px] invisible md:visible" />
+        <CarouselNext className="z-50 right-[50px] invisible md:visible" />
+        <CarouselContent className="z-10 w-full left-0 top-0 bg-transparent">
           {data.slice(0, 5).map((movie) => (
-            <CarouselItem key={movie.id} className="w-[1720px] h-[900px] flex ">
+            <CarouselItem
+              key={movie.id}
+              className="w-screen h-[300px] max-w-[1720px] max-h-[900px] flex flex-col sm:flex sm:h-[900px] "
+            >
               <CarousellItem
                 trailer={trailers[movie.id]}
                 img={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
