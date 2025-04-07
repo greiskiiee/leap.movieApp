@@ -146,11 +146,7 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
           <div className="w-[500px] max-w-[539px] h-[36px] ">
             <Popover>
               <PopoverTrigger asChild>
-                {/* <Button
-                  variant="outline"
-                  className="w-full h-full border-1 border-[#E4E4E7] rounded-md flex items-center justify-start px-[12px] gap-[10px]"
-                > */}
-                <div>
+                <div className="w-full border border-[#E4E4E7] h-full flex justify-start items-center px-2 gap-2 rounded-md">
                   <CiSearch size={16} className="opacity-50" />
                   <input
                     ref={inputRef}
@@ -160,8 +156,6 @@ export const Navigation: React.FC<NavProps> = ({ genreData }) => {
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                   />
                 </div>
-
-                {/* </Button> */}
               </PopoverTrigger>
 
               <PopoverContent className="w-[577px] h-fit mt-2 overflow-scroll max-h-[500px] ">
